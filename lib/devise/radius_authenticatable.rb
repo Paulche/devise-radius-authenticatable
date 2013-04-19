@@ -11,6 +11,10 @@ module Devise
   # The secret for the radius server
   mattr_accessor :radius_server_secret
 
+  # The secret for the radius server
+  mattr_accessor :radius_attrs
+  @@radius_attrs = {}
+
   # The timeout in seconds for radius requests
   mattr_accessor :radius_server_timeout
   @@radius_server_timeout = 60

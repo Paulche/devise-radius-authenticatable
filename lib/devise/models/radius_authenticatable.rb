@@ -74,7 +74,7 @@ module Devise
         end
 
         req = Radiustar::Request.new("#{server}:#{port}", options)
-        reply = req.authenticate(username, password, secret)
+        reply = req.authenticate(username, password, secret, self.class.radius_attrs)
 
         if reply[:code] == 'Access-Accept'
           reply.extract!(:code)
@@ -97,7 +97,7 @@ module Devise
 
         Devise::Models.config(self, :radius_server, :radius_server_port,
                               :radius_server_secret, :radius_server_timeout,
-                              :radius_server_retries, :radius_uid_field,
+                              :radius_server_retries, :radius_uid_field, :radius_attrs,
                               :radius_uid_generator, :radius_dictionary_path)
 
         # Invoked by the RadiusAuthenticatable stratgey to perform the authentication
